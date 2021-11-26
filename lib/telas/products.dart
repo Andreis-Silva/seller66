@@ -36,7 +36,7 @@ class _ProductsPageState extends State<ProductsPage> {
         ],
       ),
       body: Container(
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.only(top: 12, left: 12, right: 12, bottom: 80),
         child: Column(
           children: <Widget>[
             Expanded(
@@ -84,6 +84,13 @@ class _ProductsPageState extends State<ProductsPage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //TODO: Criar modal de confirmarção do pedido
+        },
+        child: Icon(Icons.done),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
