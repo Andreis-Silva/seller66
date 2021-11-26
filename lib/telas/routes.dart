@@ -61,9 +61,7 @@ class _RoutesPageState extends State<RoutesPage> {
                           onTap: (){
                            Navigator.of(context).push(
                              MaterialPageRoute(
-                                 builder: (context) => ClientsPage(r.id),
-
-                             ));
+                                 builder: (context) => ClientsPage(routeId: r.id)));
                           },
 
                           child: ListTile(

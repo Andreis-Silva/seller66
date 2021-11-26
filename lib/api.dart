@@ -8,7 +8,6 @@ import 'package:seller66/model/clients.dart';
 const URL_BASE = "http://api.dev3s.com.br:8083/";
 
 class Api {
-
   Future<List<Routes>> recuperarRotas() async {
     http.Response response = await http.get(Uri.parse(URL_BASE + "routes/1"));
 
@@ -30,7 +29,6 @@ class Api {
     return rotas;
   }
 
-
   Future<List<Clients>> recuperarClientes(int id) async {
     http.Response response = await http.get(Uri.parse(URL_BASE + "clients/$id"));
 
@@ -43,12 +41,10 @@ class Api {
       clientes.add(c);
     }
     return clientes;
-
   }
 
-
-  Future<List<Products>> recuperarProdutos(String pesquisa) async {
-    http.Response response = await http.get(Uri.parse(URL_BASE + "products/$pesquisa"));
+  Future<List<Products>> recuperarProdutos() async {
+    http.Response response = await http.get(Uri.parse(URL_BASE + "products"));
 
     var dadosJson = json.decode(response.body);
 
@@ -56,21 +52,12 @@ class Api {
 
     List<Products> produtos = [];
 
-    for (var products in dadosJson['data']) {
-
+    for (var products in dadosJson['data']['rows']) {
       Products p = Products(products["id"], products["name"], products["active"], products["value"]);
       print("TESTEEEEEE ${produtos}");
       produtos.add(p);
     }
     print("TESTEEEEEE ${produtos}");
     return produtos;
-
   }
-
-
-
 }
-
-
-
-

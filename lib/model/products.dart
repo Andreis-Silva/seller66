@@ -1,23 +1,23 @@
-class Products{
- late int _id;
- late String _name;
- late int _active;
- late double _value;
+class Products {
+  late int _id;
+  late String _name;
+  late int _active;
+  late String _value;
 
- Products(this._id, this._name, this._active, this._value);
+  Products(this._id, this._name, this._active, this._value);
 
- Map toJson(){
-  return{
-   "id": this._id,
-   "name": this._name,
-   "active": this._active,
-   "value": this._value,
- };
-}
+  Map toJson() {
+    return {
+      "id": this._id,
+      "name": this._name,
+      "active": this._active,
+      "value": this._value,
+    };
+  }
 
- double get value => _value;
+  String get value => _value;
 
-  set value(double value) {
+  set value(String value) {
     _value = value;
   }
 
