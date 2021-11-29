@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:seller66/model/products.dart';
 import 'dart:convert';
@@ -54,10 +55,12 @@ class Api {
 
     for (var products in dadosJson['data']['rows']) {
       Products p = Products(products["id"], products["name"], products["active"], products["value"]);
-      print("TESTEEEEEE ${produtos}");
       produtos.add(p);
     }
-    print("TESTEEEEEE ${produtos}");
     return produtos;
   }
+
+
+
+
 }

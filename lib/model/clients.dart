@@ -23,11 +23,6 @@ class Clients{
 
 
 
-  String get state => _state;
-
-  set state(String value) {
-    _state = value;
-  }
 
   String get address => _address;
 

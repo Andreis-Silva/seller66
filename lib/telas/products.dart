@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:seller66/api.dart';
 import 'package:seller66/model/products.dart';
@@ -53,10 +54,10 @@ class _ProductsPageState extends State<ProductsPage> {
 
                         Products p = list[index];
 
+
+
                         return GestureDetector(
-                            onTap: () {
-                              //Navigator.of(context).push();
-                            },
+
                             child: ListTile(
                               title: Text(
                                 p.name,
@@ -84,15 +85,43 @@ class _ProductsPageState extends State<ProductsPage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //TODO: Criar modal de confirmarção do pedido
+       floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.of(context).push(
+              MaterialPageRoute(
+                  builder: (context) => pedidoRealizado()));
         },
         child: Icon(Icons.done),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
+
+
+   pedidoRealizado(){
+    return Container(
+       color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.network("https://consorciomagalu.com.br/wp-content/uploads/2020/07/verificado-1.png",
+              width: 300,
+              ),
+              Text("Pedido realizado",
+                style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
+              ),
+              )
+            ],
+     )
+    );
+
+  }
+
+
+
 
   void quantityModal(Products p) {
     TextEditingController controller = TextEditingController();
@@ -101,13 +130,14 @@ class _ProductsPageState extends State<ProductsPage> {
     int count = 0;
     controller.text = count.toString();
 
+
     showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
             title: const Text('Informe a quantidade'),
             content: Container(
-              height: 110,
+              height: 140,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -125,20 +155,22 @@ class _ProductsPageState extends State<ProductsPage> {
                         },
                         child: Icon(Icons.remove_circle),
                       ),
+
                       Container(
-                        width: 100,
+                        width: 110,
                         child: TextField(
-                          controller: controller,
+                         controller: controller,
                           textAlign: TextAlign.center,
                         ),
                       ),
+
                       GestureDetector(
                         onTap: () {
                           count++;
                           setState(() {
                             controller.text = count.toString();
                           });
-                        },
+                          },
                         child: Icon(Icons.add_circle),
                       ),
                     ],
@@ -156,6 +188,9 @@ class _ProductsPageState extends State<ProductsPage> {
               ),
               ElevatedButton(
                 onPressed: () {
+
+                  Navigator.of(context).pop();
+
                   //TODO: Chamar api para atualizar item do pedido (PUT invoice-items)
                 },
                 child: const Text('Confirmar'),
@@ -164,4 +199,5 @@ class _ProductsPageState extends State<ProductsPage> {
           );
         });
   }
+
 }
